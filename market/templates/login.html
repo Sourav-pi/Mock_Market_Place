@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login Page
+{% endblock %}
+
+{% block content %}
+<h1>Login Form</h1>
+<div class="container-fluid d-flex vh-100  justify-content-center">
+    <form method="POST" class="form-register w-25" style="color: white;" >
+        {{ form.hidden_tag() }}
+        <h1 class="mb-2 h3 fw-normal">Please Login</h1>
+        <br>
+        {{form.username.label()}}
+        {{form.username(class="form-control mb-2", placeholder="Username")}}
+
+        {{form.password.label()}}
+        {{form.password(class="form-control mb-3", placeholder="Password")}}
+
+        
+        {{form.submit(class='btn btn-lg btn-primary w-100 mb-2')}}
+
+
+        <div class="mb-3">
+            <p>Don't have an account? <a href="{{url_for('register_page')}}">Register now</a></p>
+        </div>
+    
+    </form>
+</div>
+{% endblock %}
