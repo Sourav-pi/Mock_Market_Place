@@ -1,5 +1,6 @@
 from market import db, bcrypt, login_manager
 from flask_login import UserMixin
+from flask import redirect,url_for,flash
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -18,6 +19,8 @@ class User(db.Model,UserMixin):
     def beautiful_budget(self):
         if(len(str(self.budget))>3):
             return str(self.budget)[:-3]+','+str(self.budget)[-3:]
+        else :
+            return str(self.budget)
 
     @property
     def password(self):
@@ -29,6 +32,9 @@ class User(db.Model,UserMixin):
     
     def check_password_correction(self,attempted_password):
         return bcrypt.check_password_hash(self.password_hash,attempted_password)
+    def can_buy(self, item):
+        return self.budget >=item.price
+
 
     def __repr__(self):
         return f'User {self.username}'
@@ -40,5 +46,17 @@ class Item(db.Model):
     barcode = db.Column(db.String(length=12), unique=True, nullable=False)
     description = db.Column(db.String(length=1024), unique=True, nullable=False)
     owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+
+    def buy(self,buyer_user):
+        self.owner = buyer_user.id
+        buyer_user.budget -= self.price
+        db.session.commit()
+    
+    def sell(self):
+        owner = User.query.filter_by(id=self.owner).first()
+        self.owner = None
+        owner.budget += self.price
+        db.session.commit()
+
     def __repr__(self):
         return f'Item {self.name}'

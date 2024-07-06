@@ -24,5 +24,11 @@ class RegisterForm(FlaskForm):
 class LoginForm(FlaskForm):
     username = StringField(label='User Name',validators=[Length(min=2,max=30),DataRequired()])
     password = PasswordField(label='Password',validators=[Length(min=6),DataRequired()])
-    submit = SubmitField(label='Create Account')
+    submit = SubmitField(label='Login')
+
+class PurchaseItemForm(FlaskForm):
+    submit = SubmitField(label='Buy Now')
+
+class SellItemForm(FlaskForm):
+    submit = SubmitField(label='Sell item')
 

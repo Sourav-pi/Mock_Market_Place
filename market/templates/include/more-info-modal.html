@@ -1,0 +1,64 @@
+<!-- More Information -->
+<div class="modal fade" id="more_info_{{item.id}}" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content" style="background-color: #212121;">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="more_info_header_{{item.id}}">{{item.name}}</h1>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        {{item.description}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirm_purchase_{{item.id}}">Buy</button>
+    </div>
+    </div>
+</div>
+</div>
+
+<!-- Confirm Purchase -->
+<div class="modal fade" id="confirm_purchase_{{item.id}}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #212121;">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="confirm_purchase_header_{{item.id}}">{{item.name}}</h1>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="POST">
+                {{purchase_form.hidden_tag()}}
+                <h4>Are you sure you want to buy {{item.name}} at ${{item.price}} ?</h4>
+                <input type="hidden" id="purchased_item" name="purchased_item" value="{{item.name}}">
+                {{purchase_form.submit(class='btn btn-primary')}}
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+<!-- Confirm Sell -->
+<div class="modal fade" id="confirm_sell_{{item.id}}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #212121;">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="confirm_sell_header_{{item.id}}">{{item.name}}</h1>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="POST">
+                {{sell_form.hidden_tag()}}
+                <h4>Are you sure you want to sell {{item.name}} at ${{item.price}} ?</h4>
+                <input type="hidden" id="sold_item" name="sold_item" value="{{item.name}}">
+                {{sell_form.submit(class='btn btn-primary')}}
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+        </div>
+    </div>
+    </div>
