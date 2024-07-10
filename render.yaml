@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: my-flask-app
+    env: python
+    buildCommand: ""
+    startCommand: "gunicorn run:app"
+    plan: free
