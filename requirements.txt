@@ -18,6 +18,11 @@ Flask-Cors==4.0.1
 fonttools==4.50.0
 future==0.18.2
 gunicorn==22.0.0
+Flask-Bcrypt==1.0.1
+Flask-Login==0.6.3
+Flask-SQLAlchemy==3.1.1
+Flask-WTF==1.2.1
+gunicorn==22.0.0
 idna==3.7
 image-process==0.0.1
 importlib_metadata==7.0.2
@@ -42,6 +47,10 @@ pillow==10.2.0
 platformdirs==4.2.0
 prompt-toolkit==3.0.43
 psutil==5.9.8
+pickleshare==0.7.5
+pipreqs==0.5.0
+platformdirs==4.2.2
+prompt_toolkit==3.0.47
 ptyprocess==0.7.0
 pure-eval==0.2.2
 Pygments==2.17.2
